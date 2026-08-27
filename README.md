@@ -26,14 +26,14 @@ Missing data rates ranged from 0% to 2.1%; Little's MCAR test was non-significan
 ```
 ├── README.md
 ├── R/
-│   ├── 00_data_preparation.R      # Read raw HSLS:09 files, recode/clean variables, impute missing data (MICE)
-│   ├── 01_setup.R                  # Load packages, read imputed .rds file, apply effect coding, helper functions
-│   ├── 02_descriptive_analysis.R   # Descriptive statistics (Table 1), naive estimates
-│   ├── 03_propensity_score.R       # Propensity score estimation, common support, trimming (Table 2, Figure 1)
-│   ├── 04_iptw_balance.R           # IPTW construction, covariate balance checks (Love plot)
-│   ├── 05_outcome_models.R         # Doubly robust ATE/ATT/ATC linear regression (Tables 3–4, Appendices)
-│   └── 06_sensitivity_analysis.R   # Sensitivity analysis via sensemakr (robustness values)
-└── data/                           # Place HSLS:09 .rds data files here (not included)
+│   ├── 00_data_preparation.R      # Read raw HSLS:09 files, recode/clean variables, impute missing data
+│   ├── 01_setup.R                  # Load packages, read imputed .rds file, apply effect coding
+│   ├── 02_descriptive_analysis.R   # Descriptive statistics, naive estimates
+│   ├── 03_propensity_score.R       # Propensity score estimation, common support, trimming 
+│   ├── 04_iptw_balance.R           # IPTW construction, covariate balance checks 
+│   ├── 05_outcome_models.R         # Doubly robust ATE/ATT/ATC linear regression
+│   └── 06_sensitivity_analysis.R   # Sensitivity analysis via sensemakr
+└── data/                 
 ```
 
 ## Analytic Approach
@@ -42,10 +42,10 @@ Missing data rates ranged from 0% to 2.1%; Little's MCAR test was non-significan
 |------|--------|-------------|
 | **Data Preparation** | `00_data_preparation.R` | Read raw HSLS:09 SPSS files; select and recode all analytic variables (treatment, outcome, covariates); winsorize extreme standardized values; check missingness; impute missing values via MICE with stochastic single imputation; export the `.rds` analytic file |
 | **Setup** | `01_setup.R` | Load R packages, read the imputed `.rds` file, apply effect coding for race, define helper functions for coefficient tables |
-| **Descriptive Analysis** | `02_descriptive_analysis.R` | Compare visitor vs. non-visitor groups on all baseline covariates (Table 1); estimate naive (unweighted) linear regression models with HC2 robust standard errors |
-| **Propensity Score Estimation** | `03_propensity_score.R` | Fit logistic regression to estimate propensity scores (Table 2); check VIF for multicollinearity; visualize common support on the probability and logit scales (Figure 1); trim extreme propensity scores |
-| **IPTW & Balance** | `04_iptw_balance.R` | Compute ATE, ATT, and ATC inverse probability weights; combine with normalized survey weights; assess balance using standardized mean differences and Love plots; produce post-weighting descriptives |
-| **Outcome Models** | `05_outcome_models.R` | Estimate nested linear regression models; report ATE, ATT, ATC estimates (Table 4); test treatment × race, sex, and SES interactions |
+| **Descriptive Analysis** | `02_descriptive_analysis.R` | Compare visitor vs. non-visitor groups on all baseline covariates; estimate naive (unweighted) linear regression models with HC2 robust standard errors |
+| **Propensity Score Estimation** | `03_propensity_score.R` | Fit logistic regression to estimate propensity scores; check VIF for multicollinearity; visualize common support on the probability and logit scales; trim extreme propensity scores |
+| **IPTW & Balance** | `04_iptw_balance.R` | Compute ATE, ATT, and ATC inverse probability weights; combine with normalized survey weights; assess balance using standardized mean differences; produce post-weighting descriptives |
+| **Outcome Models** | `05_outcome_models.R` | Estimate nested linear regression models; report ATE, ATT, ATC estimates; test treatment × race, sex, and SES interactions |
 | **Sensitivity Analysis** | `06_sensitivity_analysis.R` | Compute robustness values (RV) using `sensemakr` to quantify how strong an unobserved confounder must be to nullify the treatment effect, benchmarked against ninth-grade science identity |
 
 ## Key Findings
